@@ -10,6 +10,7 @@ import {
   Nav,
   Navbar,
   NavDropdown,
+  Offcanvas,
   Row,
 } from "react-bootstrap";
 import {
@@ -26,6 +27,9 @@ const Navbarr = ({ getProprtyData }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [showFilterBox, setShowFilterBox] = useState(false);
+  const filterShow = () => setShowFilterBox(true);
+  const filterClose = () => setShowFilterBox(false);
   return (
     <Navbar style={{ backgroundColor: "#A3B18A" }} expand="sm">
       <Container fluid>
@@ -173,14 +177,71 @@ const Navbarr = ({ getProprtyData }) => {
                 </Modal.Footer>
               </Form>
             </Modal>
-
-            <Button
-              className="m-1 outline"
-              variant="outline-success"
-              style={{ color: "#DAD7CD", backgroundColor: "#3A5A40" }}
-            >
-              <Funnel size={25} /> add a filter
-            </Button>
+            <>
+              <Button
+                className="m-1 outline"
+                variant="outline-success"
+                style={{ color: "#DAD7CD", backgroundColor: "#3A5A40" }}
+                onClick={filterShow}
+              >
+                <Funnel size={25} /> add a filter
+              </Button>
+              <Offcanvas show={showFilterBox} onHide={filterClose}>
+                <Offcanvas.Header closeButton>
+                  <Offcanvas.Title>Add a filter</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                  <Form>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Price below:</Form.Label>
+                      <Form.Select id="price">
+                        <option> 1,00,00,000 (1 crore)</option>
+                        <option> 1,000,000 (10 lakh)</option>
+                        <option> 500,000 (5 lakh)</option>
+                        <option> 100,000 (1 lakh)</option>
+                        <option> 80,000 (80 thousand)</option>
+                      </Form.Select>
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Label>bedroom below:</Form.Label>
+                      <Form.Select id="bedroom">
+                        <option> 5</option>
+                        <option> 4</option>
+                        <option> 3</option>
+                        <option> 2</option>
+                      </Form.Select>
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Check
+                        type="checkbox"
+                        label="car-parking"
+                        id="parking"
+                      />
+                    </Form.Group>
+                    <Button
+                      style={{ background: "#3a5a40", borderColor: "#f0edd1" }}
+                      type="submit"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        filterClose(false);
+                        let filter = {
+                          price: document
+                            .getElementById("price")
+                            .value.split(" ")[0],
+                          bedroom: document
+                            .getElementById("bedroom")
+                            .value.split(" ")[0],
+                          parking: document.getElementById("parking").checked,
+                        };
+                        console.log(filter);
+                      }}
+                    >
+                      OK
+                    </Button>
+                  </Form>
+                </Offcanvas.Body>
+              </Offcanvas>
+            </>
           </Nav>
         </Navbar.Collapse>
       </Container>

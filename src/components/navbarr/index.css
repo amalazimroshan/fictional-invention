@@ -44,3 +44,22 @@ body {
     scrollbar-width: thin;
   }
 }
+.form-check-input:active {
+  background-color: #3a5a40;
+  border-color: hsl(131, 13%, 41%);
+}
+.form-check-input:focus {
+  border-color: hsl(131, 13%, 41%);
+  box-shadow: 0 0 0 0.25rem rgb(131 110 253 / 25%);
+}
+.form-check-input:checked {
+  background-color: #3a5a40;
+}
+.form-select:focus {
+  border-color: #f0edd1;
+  box-shadow: 0 0 0.25rem rgb(11, 59, 20);
+}
+.btn-primary:focus {
+  background-color: red;
+  box-shadow: 0 0 0 0.15rem hsla(131, 22%, 29%, 40%);
+}
