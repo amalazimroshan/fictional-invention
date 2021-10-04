@@ -1,7 +1,5 @@
 import React from "react";
 import Cards from "../cards/Cards";
-import { Button, Card } from "react-bootstrap";
-import { AlignCenter, TextCenter } from "react-bootstrap-icons";
 export const List = ({ propertiseList }) => {
   // console.log(propertyList);
   return (

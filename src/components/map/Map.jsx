@@ -14,12 +14,16 @@ const Map = ({ setCoordinates, setBounds, places }) => {
         defaulCenter={{ lat: 0, lng: 0 }}
         center={{ lat: 64.9631, lng: 19.0208 }}
         defaultZoom={3}
-        options={""}
+        options={{
+          styles: mapStyle,
+          disableDefaultUI: true,
+          zoomControl: true,
+        }}
         onChange={(e) => {
           setCoordinates({ lat: e.center.lat, lng: e.center.lng });
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
         }}
-        onChildClick={""}
+        // onChildClick={""}
       >
         {places?.map((place, i) => (
           <Badge

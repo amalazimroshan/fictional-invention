@@ -4,24 +4,14 @@ import {
   Button,
   Col,
   Container,
-  FloatingLabel,
   Form,
   Modal,
   Nav,
   Navbar,
-  NavDropdown,
   Offcanvas,
   Row,
 } from "react-bootstrap";
-import {
-  FilePlus,
-  FileCheck,
-  Funnel,
-  CloudSleet,
-  X,
-  Upload,
-  CloudArrowUpFill,
-} from "react-bootstrap-icons";
+import { FilePlus, Funnel, X, CloudArrowUpFill } from "react-bootstrap-icons";
 
 const Navbarr = ({ getProprtyData }) => {
   const [show, setShow] = useState(false);
@@ -81,6 +71,7 @@ const Navbarr = ({ getProprtyData }) => {
                     <Form.Group as={Col} className="mb-2" controlId="title">
                       <Form.Label>Title for your placement</Form.Label>
                       <Form.Control
+                        required
                         type="text"
                         placeholder="title goes here"
                         className="outlineinput"
@@ -89,6 +80,7 @@ const Navbarr = ({ getProprtyData }) => {
                     <Form.Group as={Col} className="mb-2" controlId="address">
                       <Form.Label>Address</Form.Label>
                       <Form.Control
+                        required
                         type="text"
                         placeholder="address goes here"
                         className="outlineinput"
@@ -102,7 +94,9 @@ const Navbarr = ({ getProprtyData }) => {
                       >
                         <Form.Label>lattitude</Form.Label>
                         <Form.Control
-                          type="text"
+                          required
+                          step="0.0001"
+                          type="number"
                           placeholder="-90 to 90 degrees"
                           className="outlineinput"
                         />
@@ -111,7 +105,9 @@ const Navbarr = ({ getProprtyData }) => {
                       <Form.Group as={Col} controlId="longitude">
                         <Form.Label>longitude</Form.Label>
                         <Form.Control
-                          type="text"
+                          required
+                          type="number"
+                          step="0.0001"
                           placeholder="-180 to 180 degrees"
                           className="outlineinput"
                         />
@@ -121,6 +117,7 @@ const Navbarr = ({ getProprtyData }) => {
                     <Form.Group as={Col} controlId="price">
                       <Form.Label>Price</Form.Label>
                       <Form.Control
+                        required
                         type="number"
                         placeholder="price in rupees"
                         className="outlineinput"
@@ -132,6 +129,7 @@ const Navbarr = ({ getProprtyData }) => {
                     <Form.Group as={Col} controlId="area">
                       <Form.Label>total area</Form.Label>
                       <Form.Control
+                        require
                         type="number"
                         placeholder="in square feet"
                         className="outlineinput"
@@ -140,16 +138,25 @@ const Navbarr = ({ getProprtyData }) => {
                     <Row>
                       <Form.Group as={Col} controlId="bedroom">
                         <Form.Label>no of bedroom</Form.Label>
-                        <Form.Control type="number" className="outlineinput" />
+                        <Form.Control
+                          required
+                          type="number"
+                          className="outlineinput"
+                        />
                       </Form.Group>
                       <Form.Group as={Col} controlId="bathroom">
                         <Form.Label>no of bathroom</Form.Label>
-                        <Form.Control type="number" className="outlineinput" />
+                        <Form.Control
+                          required
+                          type="number"
+                          className="outlineinput"
+                        />
                       </Form.Group>
                     </Row>
                     <Form.Group as={Col} controlId="description">
                       <Form.Label>description</Form.Label>
                       <Form.Control
+                        required
                         as="textarea"
                         rows={3}
                         placeholder="any usefull info you wish to add"
