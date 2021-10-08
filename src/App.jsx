@@ -12,6 +12,11 @@ const App = () => {
   const [coordinates, setCoordinates] = useState({});
   const [bounds, setBounds] = useState({});
   const [propertyList, setPropertyList] = useState([]);
+  const [filters, setFilters] = useState({
+    price: 10000000,
+    bedroom: 5,
+    parking: false,
+  });
 
   const REALM_APP_ID = "appllication-01-brmct";
   const app = new Realm.App({ id: REALM_APP_ID });
@@ -59,17 +64,22 @@ const App = () => {
   useEffect(() => {
     async function getProprtyList() {
       try {
-        console.log("coordinates changed", bounds);
+        console.log({ coordinates_changed: bounds, filters });
+
         const user = await app.logIn(credentials);
-        const propertise = await user.functions.getPropertyInsideBounds(bounds);
+        const propertise = await user.functions.funcToTestArg({
+          bounds,
+          filters,
+        });
         setPropertyList(propertise);
-        console.log(propertyList);
+        console.log({ dataFromSrvr: propertise });
+        // console.log(propertyList);
       } catch (err) {
         console.error(err);
       }
     }
     Object.keys(bounds).length !== 0 && getProprtyList();
-  }, [bounds]);
+  }, [bounds, filters]);
 
   ////// geting restaurants by name //////
   // useEffect(() => {
@@ -89,7 +99,7 @@ const App = () => {
   return (
     <Container fluid>
       <Row>
-        <Navbar getProprtyData={getProprtyData} />
+        <Navbar getProprtyData={getProprtyData} setFilters={setFilters} />
       </Row>
       <Row style={{ flexDirection: "row-reverse" }}>
         {/* map */}

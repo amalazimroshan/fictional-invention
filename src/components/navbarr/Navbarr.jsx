@@ -13,7 +13,7 @@ import {
 } from "react-bootstrap";
 import { FilePlus, Funnel, X, CloudArrowUpFill } from "react-bootstrap-icons";
 
-const Navbarr = ({ getProprtyData }) => {
+const Navbarr = ({ getProprtyData, setFilters }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -60,9 +60,14 @@ const Navbarr = ({ getProprtyData }) => {
                     bathroom: parseInt(
                       document.getElementById("bathroom").value
                     ),
+                    parking: document.getElementById("parking").checked,
                     description: document.getElementById("description").value,
+                    contactName: document.getElementById("contactName").value,
+                    contactNumber:
+                      document.getElementById("contactNumber").value,
                   };
                   getProprtyData(data);
+                  // console.log(data);
                   handleClose();
                 }}
               >
@@ -129,7 +134,7 @@ const Navbarr = ({ getProprtyData }) => {
                     <Form.Group as={Col} controlId="area">
                       <Form.Label>total area</Form.Label>
                       <Form.Control
-                        require
+                        required
                         type="number"
                         placeholder="in square feet"
                         className="outlineinput"
@@ -153,6 +158,11 @@ const Navbarr = ({ getProprtyData }) => {
                         />
                       </Form.Group>
                     </Row>
+
+                    <Form.Group className="m-3" controlId="parking">
+                      <Form.Check type="checkbox" label="car-parking" />
+                    </Form.Group>
+
                     <Form.Group as={Col} controlId="description">
                       <Form.Label>description</Form.Label>
                       <Form.Control
@@ -160,6 +170,27 @@ const Navbarr = ({ getProprtyData }) => {
                         as="textarea"
                         rows={3}
                         placeholder="any usefull info you wish to add"
+                        className="outlineinput"
+                      />
+                    </Form.Group>
+                  </div>
+                  <div className="boxShadow p-2">
+                    <h5>contact details</h5>
+                    <Form.Group controlId="contactName">
+                      <Form.Label>contact name</Form.Label>
+                      <Form.Control
+                        required
+                        type="text"
+                        placeholder="your contact name"
+                        className="outlineinput"
+                      />
+                    </Form.Group>
+                    <Form.Group controlId="contactNumber">
+                      <Form.Label>contact number</Form.Label>
+                      <Form.Control
+                        required
+                        type="number"
+                        placeholder="your contact number"
                         className="outlineinput"
                       />
                     </Form.Group>
@@ -198,15 +229,27 @@ const Navbarr = ({ getProprtyData }) => {
                   <Offcanvas.Title>Add a filter</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  <Form>
+                  <Form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      filterClose();
+                      let filter = {
+                        price: parseInt(document.getElementById("price").value),
+                        bedroom: parseInt(
+                          document.getElementById("bedroom").value.split(" ")[0]
+                        ),
+                      };
+                      setFilters(filter);
+                    }}
+                  >
                     <Form.Group className="mb-3">
                       <Form.Label>Price below:</Form.Label>
                       <Form.Select id="price">
-                        <option> 1,00,00,000 (1 crore)</option>
-                        <option> 1,000,000 (10 lakh)</option>
-                        <option> 500,000 (5 lakh)</option>
-                        <option> 100,000 (1 lakh)</option>
-                        <option> 80,000 (80 thousand)</option>
+                        <option value="10000000"> 1,00,00,000 (1 crore)</option>
+                        <option value="1000000"> 10,00,000 (10 lakh)</option>
+                        <option value="500000"> 5,00,000 (5 lakh)</option>
+                        <option value="100000"> 1,00,000 (1 lakh)</option>
+                        <option value="80000"> 80,000 (80 thousand)</option>
                       </Form.Select>
                     </Form.Group>
                     <Form.Group className="mb-3">
@@ -218,30 +261,10 @@ const Navbarr = ({ getProprtyData }) => {
                         <option> 2</option>
                       </Form.Select>
                     </Form.Group>
-                    <Form.Group className="mb-3">
-                      <Form.Check
-                        type="checkbox"
-                        label="car-parking"
-                        id="parking"
-                      />
-                    </Form.Group>
+
                     <Button
                       style={{ background: "#3a5a40", borderColor: "#f0edd1" }}
                       type="submit"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        filterClose(false);
-                        let filter = {
-                          price: document
-                            .getElementById("price")
-                            .value.split(" ")[0],
-                          bedroom: document
-                            .getElementById("bedroom")
-                            .value.split(" ")[0],
-                          parking: document.getElementById("parking").checked,
-                        };
-                        console.log(filter);
-                      }}
                     >
                       OK
                     </Button>
