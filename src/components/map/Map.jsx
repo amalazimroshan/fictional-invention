@@ -12,8 +12,8 @@ const Map = ({ setCoordinates, setBounds, places }) => {
           key: "AIzaSyA7fxRJt42JWzLQQyYFmDmzcI0c_z3xhI8",
         }}
         defaulCenter={{ lat: 0, lng: 0 }}
-        center={{ lat: 64.9631, lng: 19.0208 }}
-        defaultZoom={3}
+        center={{ lat: 8.6471, lng: 77.1197 }}
+        defaultZoom={8}
         options={{
           styles: mapStyle,
           disableDefaultUI: true,
@@ -26,20 +26,23 @@ const Map = ({ setCoordinates, setBounds, places }) => {
         // onChildClick={""}
       >
         {places?.map((place, i) => (
-          <Badge
-            key={i}
-            pill
-            className="markerBadge"
-            // style={{ color: "#343434", fontSize: "0.8rem" }}
+          <Marker
             lat={place.position.coordinates[1]}
             lng={place.position.coordinates[0]}
-          >
-            {place.price}
-          </Badge>
+            price={place.price}
+            key={i}
+          />
         ))}
       </GoogleMapReact>
     </div>
   );
 };
 
+const Marker = ({ lat, lng, price }) => {
+  return (
+    <Badge pill className="markerBadge" lat={lat} lng={lng}>
+      {price}
+    </Badge>
+  );
+};
 export default Map;

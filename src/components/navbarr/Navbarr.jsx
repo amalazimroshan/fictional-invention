@@ -100,7 +100,6 @@ const Navbarr = ({ getProprtyData, setFilters }) => {
                         <Form.Label>lattitude</Form.Label>
                         <Form.Control
                           required
-                          step="0.0001"
                           type="number"
                           placeholder="-90 to 90 degrees"
                           className="outlineinput"
@@ -112,7 +111,6 @@ const Navbarr = ({ getProprtyData, setFilters }) => {
                         <Form.Control
                           required
                           type="number"
-                          step="0.0001"
                           placeholder="-180 to 180 degrees"
                           className="outlineinput"
                         />

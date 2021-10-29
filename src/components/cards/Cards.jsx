@@ -89,13 +89,13 @@ const Cards = ({ property }) => {
                   <ListGroup.Item>
                     contact name
                     <span className="keepRight">
-                      {property.phone ? property.contactName : "null"}
+                      {property.contactName ? property.contactName : "null"}
                     </span>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     phone
                     <span className="keepRight">
-                      {property.phone ? property.phone : "null"}
+                      {property.contactNumber ? property.contactNumber : "null"}
                     </span>
                   </ListGroup.Item>
                 </ListGroup>
