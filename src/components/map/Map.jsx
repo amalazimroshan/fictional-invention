@@ -9,7 +9,7 @@ const Map = ({ setCoordinates, setBounds, places }) => {
     <div className="map-container">
       <GoogleMapReact
         bootstrapURLKeys={{
-          key: "AIzaSyA7fxRJt42JWzLQQyYFmDmzcI0c_z3xhI8",
+          key: "google-map-api-key",
         }}
         defaulCenter={{ lat: 0, lng: 0 }}
         center={{ lat: 8.6471, lng: 77.1197 }}
