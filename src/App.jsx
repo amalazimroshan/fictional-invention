@@ -18,7 +18,7 @@ const App = () => {
     parking: false,
   });
 
-  const REALM_APP_ID = "appllication-01-brmct";
+  const REALM_APP_ID = "monogodb-atlas-appid";
   const app = new Realm.App({ id: REALM_APP_ID });
   const credentials = Realm.Credentials.anonymous();
 
@@ -33,33 +33,7 @@ const App = () => {
       console.error(err);
     }
   };
-  // useEffect(() => {
-  //   async function sendDataToServer(data) {
-  //     try {
-  //       // console.log(data);
-  //       const result = await(
-  //         await app.logIn(credentials)
-  //       ).functions.PostData(data);
-  //       console.log(result);
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-  //   sendDataToServer(propertydata);
-  // }, [propertydata]);
 
-  // useEffect(() => {
-  //   async function getRestaurantsList() {
-  //     try {
-  //       const user = await app.logIn(credentials);
-  //       const Restaurants = await user.functions.getAllRestaurants();
-  //       setRestaurantList(Restaurants);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
-  //   getRestaurantsList();
-  // }, []);
 
   useEffect(() => {
     async function getProprtyList() {
@@ -81,21 +55,7 @@ const App = () => {
     Object.keys(bounds).length !== 0 && getProprtyList();
   }, [bounds, filters]);
 
-  ////// geting restaurants by name //////
-  // useEffect(() => {
-  //   async function getRestaurantName() {
-  //     try {
-  //       const result = await (
-  //         await app.logIn(credentials)
-  //       ).functions.getRestaurantById("5eb3d668b31de5d588f42948");
-  //       console.log(result);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   }
-  //   getRestaurantName();
-  // }, []);
-  //////////////////////////////////////
+
   return (
     <Container fluid>
       <Row>
